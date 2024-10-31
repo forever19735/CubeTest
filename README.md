@@ -24,7 +24,7 @@ protocol APIManagerProtocol {
                                                  completion: @escaping ((Swift.Result<T.Response?, APIError>) -> Void))
 }
 ```
-APIManagerProtocol 用來加載 json 資料，具體實作交由實作端處理
+APIManagerProtocol 用來加載網路資料，具體實作交由實作端處理
 
 ```
 /// 具體實作
