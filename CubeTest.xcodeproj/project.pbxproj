@@ -38,22 +38,9 @@
 		B58425262CCB3D7D007D67EC /* CubeTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CubeTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		B584252E2CCB3D7D007D67EC /* Exceptions for "CubeTest" folder in "CubeTest" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = B58425052CCB3D7A007D67EC /* CubeTest */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		B58425082CCB3D7A007D67EC /* CubeTest */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				B584252E2CCB3D7D007D67EC /* Exceptions for "CubeTest" folder in "CubeTest" target */,
-			);
 			path = CubeTest;
 			sourceTree = "<group>";
 		};
