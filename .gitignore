@@ -60,3 +60,15 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+
+
+# Tuist-generated Xcode project/workspace
+*.xcworkspace/
+**/*.xcodeproj/
+**/*.xcworkspace/
+
+# Tuist cache & build
+**/Derived/
+
+# Tuist generated Package.resolved (if using SPM via Tuist)
+**/Package.resolved
