@@ -1,57 +1,62 @@
 import ProjectDescription
 
 public extension Scheme {
-    static func makeDevScheme() -> Scheme {
+    static func makeScheme(
+        name: String,
+        targetName: String,
+        testTargetName: String,
+        executable: String,
+        configuration: ConfigurationName
+    ) -> Scheme {
         return Scheme.scheme(
-            name: "Cube-Dev",
+            name: name,
             shared: true,
-            buildAction: .buildAction(targets: ["CubeTest"]),
+            buildAction: .buildAction(
+                targets: [TargetReference(stringLiteral: targetName)]
+            ),
             testAction: .targets(
-                ["CubeTestTests"],
-                configuration: .debug
+                [TestableTarget(stringLiteral: testTargetName)],
+                configuration: configuration
             ),
             runAction: .runAction(
-                configuration: .debug,
-                executable: "CubeTest",
-                arguments: .arguments(
-                    environmentVariables: [
-                        "IDEPreferLogStreaming": "YES",
-                    ],
-                    launchArguments: [
-//                        .launchArgument(name: "-FIRAnalyticsDebugEnabled", isEnabled: true),
-                    ]
-                )
+                configuration: configuration,
+                executable: TargetReference(stringLiteral: executable),
+                arguments: commonArguments()
             ),
-            archiveAction: .archiveAction(configuration: .debug),
-            profileAction: .profileAction(configuration: .debug),
-            analyzeAction: .analyzeAction(configuration: .debug)
+            archiveAction: .archiveAction(configuration: configuration),
+            profileAction: .profileAction(configuration: configuration),
+            analyzeAction: .analyzeAction(configuration: configuration)
+        )
+    }
+
+    static func makeDevScheme() -> Scheme {
+        return makeScheme(
+            name: "Cube-Dev",
+            targetName: "CubeTest",
+            testTargetName: "CubeTestTests",
+            executable: "CubeTest",
+            configuration: .debug
         )
     }
 
     static func makeReleaseScheme() -> Scheme {
-        return Scheme.scheme(
+        return makeScheme(
             name: "Cube-Release",
-            shared: true,
-            buildAction: .buildAction(targets: ["CubeTest"]),
-            testAction: .targets(
-                ["CubeTestTests"],
-                configuration: .debug
-            ),
-            runAction: .runAction(
-                configuration: .release,
-                executable: "CubeTest",
-                arguments: .arguments(
-                    environmentVariables: [
-                        "IDEPreferLogStreaming": "YES",
-                    ],
-                    launchArguments: [
-//                        .launchArgument(name: "-FIRAnalyticsDebugEnabled", isEnabled: true),
-                    ]
-                )
-            ),
-            archiveAction: .archiveAction(configuration: .release),
-            profileAction: .profileAction(configuration: .release),
-            analyzeAction: .analyzeAction(configuration: .release)
+            targetName: "CubeTestr",
+            testTargetName: "CubeTestTests",
+            executable: "CubeTest",
+            configuration: .release
+        )
+    }
+
+    private static func commonArguments() -> Arguments {
+        return Arguments.arguments(
+            environmentVariables: [
+                "IDEPreferLogStreaming": "YES",
+            ],
+            launchArguments: [
+//                .launchArgument(name: "-FIRAnalyticsDebugEnabled", isEnabled: true),
+            ]
         )
     }
 }
